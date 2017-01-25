@@ -8,28 +8,37 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 
 public class MyGdxGame extends ApplicationAdapter {
 	private Texture dirt;
 	private Texture tree;
 	private Texture stone;
+    public static Texture backgroundTexture;
+    public static Sprite backgroundSprite;
 	private Music russiasong;
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
 	private Rectangle dirtspace;
-	
+    private static TiledMap map;
 	@Override
 	public void create () {
+        map = new TmxMapLoader().load("data/map.tmx");
 		dirt = new Texture("data/DarkDirt.jpg");
 		tree = new Texture(("data/BigTree1.png"));
 		stone = new Texture(("data/download.jpg"));
+        backgroundTexture = new Texture("data/Map.png");
+        backgroundSprite =new Sprite(backgroundTexture);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1920, 1080);
 		batch = new SpriteBatch();
@@ -42,8 +51,7 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(0, 0, 0.2f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
@@ -53,7 +61,7 @@ public class MyGdxGame extends ApplicationAdapter {
 			Vector3 touchPos = new Vector3();
 			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
 			camera.unproject(touchPos);
-			
+
 		}
 	}
 	
