@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
@@ -30,7 +32,9 @@ public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
 	private Rectangle dirtspace;
-    private static TiledMap map;
+    public static TiledMap map;
+    public TiledMapRenderer tiledMapRenderer;
+
 	@Override
 	public void create () {
         map = new TmxMapLoader().load("data/map.tmx");
@@ -42,6 +46,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1920, 1080);
 		batch = new SpriteBatch();
+		tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
 		dirtspace = new Rectangle();
 		dirtspace.x = 800 / 2 - 64 / 2;
 		dirtspace.y = 20;
@@ -53,6 +58,8 @@ public class MyGdxGame extends ApplicationAdapter {
 	public void render () {
 
 		camera.update();
+		tiledMapRenderer.setView(camera);
+		tiledMapRenderer.render();
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		batch.draw(dirt, dirtspace.x, dirtspace.y);
