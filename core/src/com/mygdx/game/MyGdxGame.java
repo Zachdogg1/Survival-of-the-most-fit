@@ -26,13 +26,14 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Texture dirt;
 	private Texture tree;
 	private Texture stone;
-    
+	private int charnum;
 	private Music russiasong;
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
 	private Rectangle dirtspace;
     public static TiledMap map;
     public TiledMapRenderer tiledMapRenderer;
+    public Texture character;
 
 	@Override
 	public void create () {
@@ -40,17 +41,27 @@ public class MyGdxGame extends ApplicationAdapter {
 		dirt = new Texture("data/DarkDirt.jpg");
 		tree = new Texture(("data/BigTree1.png"));
 		stone = new Texture(("data/download.jpg"));
+		charnum = randomgeneration.characters();
 
+		if (0 == charnum) {
+            character = new Texture("data/char1.png");
+        }
+		if (1 == charnum) {
+            character = new Texture("data/char2.png");
+        }
+		if (2 == charnum) {
+            character = new Texture("data/char3.png");
+        }
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1920, 1080);
 		batch = new SpriteBatch();
-		tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
+
 		dirtspace = new Rectangle();
 		dirtspace.x = 800 / 2 - 64 / 2;
 		dirtspace.y = 20;
-		dirtspace.width = 64;
-		dirtspace.height = 64;
+		dirtspace.width = 32;
+		dirtspace.height = 32;
 	}
 
 	@Override
@@ -61,7 +72,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		tiledMapRenderer.render();
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		batch.draw(dirt, dirtspace.x, dirtspace.y);
+		batch.draw(character, dirtspace.x, dirtspace.y);
 		batch.end();
 		if(Gdx.input.isTouched()) {
 			Vector3 touchPos = new Vector3();
