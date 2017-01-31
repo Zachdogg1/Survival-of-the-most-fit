@@ -26,8 +26,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Texture dirt;
 	private Texture tree;
 	private Texture stone;
-    public static Texture backgroundTexture;
-    public static Sprite backgroundSprite;
+    
 	private Music russiasong;
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
@@ -41,8 +40,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		dirt = new Texture("data/DarkDirt.jpg");
 		tree = new Texture(("data/BigTree1.png"));
 		stone = new Texture(("data/download.jpg"));
-        backgroundTexture = new Texture("data/Map.png");
-        backgroundSprite =new Sprite(backgroundTexture);
+
+
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1920, 1080);
 		batch = new SpriteBatch();
