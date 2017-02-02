@@ -85,7 +85,7 @@ public class MyGdxGame extends ApplicationAdapter {
 				mainpc.translateX(-2f);
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.D)){
-				if(mainpc.getX() < 6400)
+				if(mainpc.getX() + 32 < 6400)
 				mainpc.translateX(2f);
 
 
@@ -95,7 +95,7 @@ public class MyGdxGame extends ApplicationAdapter {
 				mainpc.translateY(-2f);
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.W)){
-				if(mainpc.getY() < 3616)
+				if(mainpc.getY() + 32 < 3616)
 				mainpc.translateY(2f);
 		}
 		batch.setProjectionMatrix(camera.combined);
