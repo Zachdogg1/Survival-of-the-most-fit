@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -32,8 +33,9 @@ public class MyGdxGame extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private Rectangle dirtspace;
     public static TiledMap map;
-    public TiledMapRenderer tiledMapRenderer;
+    public OrthogonalTiledMapRenderer tiledMapRenderer;
     public Texture character;
+    private Sprite mainpc;
 
 	@Override
 	public void create () {
@@ -42,6 +44,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		tree = new Texture(("data/BigTree1.png"));
 		stone = new Texture(("data/download.jpg"));
 		charnum = randomgeneration.characters();
+		tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
 
 		if (0 == charnum) {
             character = new Texture("data/char1.png");
@@ -52,7 +55,8 @@ public class MyGdxGame extends ApplicationAdapter {
 		if (2 == charnum) {
             character = new Texture("data/char3.png");
         }
-
+		mainpc = new Sprite(character);
+		mainpc.setPosition(1000,900);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 1920, 1080);
 		batch = new SpriteBatch();
@@ -66,20 +70,48 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		camera.update();
 		tiledMapRenderer.setView(camera);
 		tiledMapRenderer.render();
+
+		camera.position.set(mainpc.getX() + mainpc.getWidth()/2, mainpc.getY() + mainpc.getHeight()/2, 20);
+
+		tiledMapRenderer.getBatch().begin();
+		if(Gdx.input.isKeyPressed(Keys.A)){
+				if(mainpc.getX() > 0)
+				mainpc.translateX(-2f);
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.D)){
+				if(mainpc.getX() < 6400)
+				mainpc.translateX(2f);
+
+
+		}
+		if(Gdx.input.isKeyPressed(Keys.S)){
+				if(mainpc.getY() > 0)
+				mainpc.translateY(-2f);
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.W)){
+				if(mainpc.getY() < 3616)
+				mainpc.translateY(2f);
+		}
 		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		batch.draw(character, dirtspace.x, dirtspace.y);
-		batch.end();
-		if(Gdx.input.isTouched()) {
+		mainpc.draw(tiledMapRenderer.getBatch());
+
+		/*if(Gdx.input.isTouched()) {
 			Vector3 touchPos = new Vector3();
 			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
 			camera.unproject(touchPos);
+			if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) dirtspace.x -= 4;
+			if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) dirtspace.x += 4;
+			if(Gdx.input.isKeyPressed(Keys.UP)) dirtspace.y += 4;
+			if(Gdx.input.isKeyPressed(Keys.DOWN)) dirtspace.y += 4;
 
-		}
+		} */
+		tiledMapRenderer.getBatch().end();
 	}
 	
 	@Override
