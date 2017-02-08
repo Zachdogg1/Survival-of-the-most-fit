@@ -38,7 +38,7 @@ public class MyGdxGame extends ApplicationAdapter {
     private Sprite mainpc;
 
 	@Override
-	public void create () {
+	public void create () { //initialising all variables
         map = new TmxMapLoader().load("data/map.tmx");
 		dirt = new Texture("data/DarkDirt.jpg");
 		tree = new Texture(("data/BigTree1.png"));
@@ -69,10 +69,11 @@ public class MyGdxGame extends ApplicationAdapter {
 	}
 
 	@Override
+	//main running of the game
 	public void render () {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+		//setting camera and rendering map
 		camera.update();
 		tiledMapRenderer.setView(camera);
 		tiledMapRenderer.render();
@@ -80,6 +81,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		camera.position.set(mainpc.getX() + mainpc.getWidth()/2, mainpc.getY() + mainpc.getHeight()/2, 20);
 
 		tiledMapRenderer.getBatch().begin();
+		//movement
 		if(Gdx.input.isKeyPressed(Keys.A)){
 				if(mainpc.getX() > 0 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()) == false)
 				mainpc.translateX(-2f);
@@ -101,16 +103,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		batch.setProjectionMatrix(camera.combined);
 		mainpc.draw(tiledMapRenderer.getBatch());
 
-		/*if(Gdx.input.isTouched()) {
-			Vector3 touchPos = new Vector3();
-			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-			camera.unproject(touchPos);
-			if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) dirtspace.x -= 4;
-			if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) dirtspace.x += 4;
-			if(Gdx.input.isKeyPressed(Keys.UP)) dirtspace.y += 4;
-			if(Gdx.input.isKeyPressed(Keys.DOWN)) dirtspace.y += 4;
 
-		} */
 		tiledMapRenderer.getBatch().end();
 	}
 	
