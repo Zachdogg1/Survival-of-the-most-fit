@@ -83,21 +83,21 @@ public class MyGdxGame extends ApplicationAdapter {
 		tiledMapRenderer.getBatch().begin();
 		//movement
 		if(Gdx.input.isKeyPressed(Keys.A)){
-				if(mainpc.getX() > 0 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()) == false)
+				if(mainpc.getX() > 0 && collisiondet.willcollide(mainpc.getX()-2, mainpc.getY()) == false)
 				mainpc.translateX(-2f);
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.D)){
-				if((mainpc.getX() + 32 < 6400)&& collisiondet.willcollide(mainpc.getX(), mainpc.getY()) == false)
+				if((mainpc.getX() + 32 < 6400)&& collisiondet.willcollide(mainpc.getX()+2, mainpc.getY()) == false)
 				mainpc.translateX(2f);
 
 
 		}
 		if(Gdx.input.isKeyPressed(Keys.S)){
-				if(mainpc.getY() > 0 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()) == false)
+				if(mainpc.getY() > 0 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()-2) == false)
 				mainpc.translateY(-2f);
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.W)){
-				if(mainpc.getY() + 32 < 3616 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()) == false)
+				if(mainpc.getY() + 32 < 3616 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()+2) == false)
 				mainpc.translateY(2f);
 		}
 		batch.setProjectionMatrix(camera.combined);

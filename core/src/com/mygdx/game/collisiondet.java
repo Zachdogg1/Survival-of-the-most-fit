@@ -9,23 +9,26 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 
+import static com.mygdx.game.MyGdxGame.map;
+
 // Class for detecting collsion
 
 public class collisiondet {
 
     private static int objectlayer = 0;
-    private static TiledMapTileLayer collision = (TiledMapTileLayer) MyGdxGame.map.getLayers().get(objectlayer);
-    private static MapObjects object = collision.getObjects();
-    private static TiledMapTileLayer.Cell cell;
+    private static TiledMapTileLayer collision = (TiledMapTileLayer) map.getLayers().get("layer1");
+    private static TiledMapTileLayer.Cell myCell;
     public static boolean willcollide(float posx, float posy)
     {
 
-                int x = Math.round(posx);
-                int y = Math.round(posy);
-                 cell = collision.getCell(x/32, y/32);
-                TiledMapTile tile = cell.getTile();
-                MapProperties test = tile.getProperties();
-                if(test.containsKey("stop"))
+                int x = Math.round(posx/32);
+                int y = Math.round(posy/32);
+                System.out.println(x + ", " + y);
+                System.out.println(collision.getHeight() + ", " + collision.getWidth());
+                myCell = collision.getCell(x, y);
+                System.out.println(myCell.getTile().getId());
+                Object test = myCell.getTile().getProperties().get("stop");
+                if(test != null)
                 {
                     return true;
                 }
