@@ -100,16 +100,27 @@ public class MyGdxGame extends ApplicationAdapter {
 				if(mainpc.getY() + 32 < 3616 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()+2) == false)
 				mainpc.translateY(2f);
 		}
+		if(Gdx.input.isKeyPressed(Keys.ENTER)){
+		editMap(mainpc.getX(),mainpc.getY(), 0, 0);
+		}
 		batch.setProjectionMatrix(camera.combined);
 		mainpc.draw(tiledMapRenderer.getBatch());
 
 
 		tiledMapRenderer.getBatch().end();
 	}
-	
+
+	public void editMap(float posx, float posy, int blocktype, int tilesetname){
+		int x = Math.round(posx/32);
+		int y = Math.round(posy/32);
+		((TiledMapTileLayer) map.getLayers().get("Tile Layer 2")).getCell(x,y).setTile((map.getTileSets().getTileSet(tilesetname)).getTile(blocktype));
+        tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
+
+	}
 	@Override
 	public void dispose () {
 		batch.dispose();
 
 	}
+
 }
