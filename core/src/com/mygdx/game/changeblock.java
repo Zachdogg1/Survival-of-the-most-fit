@@ -11,10 +11,11 @@ import static com.mygdx.game.MyGdxGame.map;
  */
 public class changeblock{
 
-    public static void modify (float posx, float posy, int blocktype, int tilesetname)
+    public static void modify (float posx, float posy)
     {
-       
 
-
+        int x = Math.round(posx/32);
+        int y = Math.round(posy/32);
+        ((TiledMapTileLayer) MyGdxGame.newmap.getLayers().get("Tile Layer 2")).setCell(x,y,null);
     }
 }

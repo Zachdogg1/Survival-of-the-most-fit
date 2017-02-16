@@ -32,7 +32,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
 	private Rectangle dirtspace;
-    public static TiledMap map;
+    public static TiledMap map, newmap;
     public OrthogonalTiledMapRenderer tiledMapRenderer;
     public Texture character;
     private Sprite mainpc;
@@ -40,11 +40,12 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	public void create () { //initialising all variables
         map = new TmxMapLoader().load("data/map.tmx");
+        newmap = map;
 		dirt = new Texture("data/DarkDirt.jpg");
 		tree = new Texture(("data/BigTree1.png"));
 		stone = new Texture(("data/download.jpg"));
 		charnum = randomgeneration.characters();
-		tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
+		tiledMapRenderer = new OrthogonalTiledMapRenderer(newmap);
 
 		if (0 == charnum) {
             character = new Texture("data/char1.png");
@@ -103,6 +104,9 @@ public class MyGdxGame extends ApplicationAdapter {
 		if(Gdx.input.isKeyPressed(Keys.ENTER)){
 		editMap(mainpc.getX(),mainpc.getY(), 0, 0);
 		}
+		if(Gdx.input.isKeyPressed(Keys.BACKSPACE)){
+			changeblock.modify(mainpc.getX(),mainpc.getY());
+		}
 		batch.setProjectionMatrix(camera.combined);
 		mainpc.draw(tiledMapRenderer.getBatch());
 
@@ -111,10 +115,13 @@ public class MyGdxGame extends ApplicationAdapter {
 	}
 
 	public void editMap(float posx, float posy, int blocktype, int tilesetname){
+
 		int x = Math.round(posx/32);
 		int y = Math.round(posy/32);
-		((TiledMapTileLayer) map.getLayers().get("Tile Layer 2")).getCell(x,y).setTile((map.getTileSets().getTileSet(tilesetname)).getTile(blocktype));
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
+		TiledMapTileLayer.Cell cell = ((TiledMapTileLayer) map.getLayers().get(0)).getCell(0,0);
+		//((TiledMapTileLayer) newmap.getLayers().get("Tile Layer 2")).getCell(x,y).setTile((newmap.getTileSets().getTileSet(tilesetname)).getTile(blocktype));
+		((TiledMapTileLayer) newmap.getLayers().get("Tile Layer 2")).setCell(x,y,cell);
+
 
 	}
 	@Override
