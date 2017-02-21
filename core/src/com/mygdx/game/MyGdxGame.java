@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
@@ -21,9 +22,11 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+import static com.badlogic.gdx.math.Interpolation.*;
 
 
-public class MyGdxGame extends ApplicationAdapter {
+public class MyGdxGame extends Game {
 	private Texture dirt;
 	private Texture tree;
 	private Texture stone;
@@ -36,10 +39,17 @@ public class MyGdxGame extends ApplicationAdapter {
     public OrthogonalTiledMapRenderer tiledMapRenderer;
     public Texture character;
     private Sprite mainpc;
+	private Game game;
+
+	public MyGdxGame() {
+		game = this;
+
+	}
 
 	@Override
 	public void create () { //initialising all variables
-        map = new TmxMapLoader().load("data/map.tmx");
+
+        map = new TmxMapLoader().load("data/map1.tmx");
         newmap = map;
 		dirt = new Texture("data/DarkDirt.jpg");
 		tree = new Texture(("data/BigTree1.png"));
@@ -72,6 +82,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	@Override
 	//main running of the game
 	public void render () {
+		super.render();
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//setting camera and rendering map
@@ -101,8 +112,13 @@ public class MyGdxGame extends ApplicationAdapter {
 				if(mainpc.getY() + 32 < 3616 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()+2) == false)
 				mainpc.translateY(2f);
 		}
+		if(Gdx.input.isKeyPressed(Keys.TAB))
+		{
+			setScreen(new chooseblock(game));
+
+		}
 		if(Gdx.input.isKeyPressed(Keys.ENTER)){
-		editMap(mainpc.getX(),mainpc.getY(), 0, 0);
+		editMap(mainpc.getX(),mainpc.getY(), 0);
 		}
 		if(Gdx.input.isKeyPressed(Keys.BACKSPACE)){
 			changeblock.modify(mainpc.getX(),mainpc.getY());
@@ -114,11 +130,11 @@ public class MyGdxGame extends ApplicationAdapter {
 		tiledMapRenderer.getBatch().end();
 	}
 
-	public void editMap(float posx, float posy, int blocktype, int tilesetname){
+	public void editMap(float posx, float posy, int blocktype){
 
 		int x = Math.round(posx/32);
 		int y = Math.round(posy/32);
-		TiledMapTileLayer.Cell cell = ((TiledMapTileLayer) map.getLayers().get(0)).getCell(0,0);
+		TiledMapTileLayer.Cell cell = ((TiledMapTileLayer) map.getLayers().get(0)).getCell(blocktype,0);
 		//((TiledMapTileLayer) newmap.getLayers().get("Tile Layer 2")).getCell(x,y).setTile((newmap.getTileSets().getTileSet(tilesetname)).getTile(blocktype));
 		((TiledMapTileLayer) newmap.getLayers().get("Tile Layer 2")).setCell(x,y,cell);
 
