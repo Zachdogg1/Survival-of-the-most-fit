@@ -40,6 +40,7 @@ public class MyGdxGame extends Game {
     public Texture character;
     private Sprite mainpc;
 	private Game game;
+	public static int blocktype;
 
 	public MyGdxGame() {
 		game = this;
@@ -51,6 +52,7 @@ public class MyGdxGame extends Game {
 
         map = new TmxMapLoader().load("data/map1.tmx");
         newmap = map;
+        blocktype = 0;
 		dirt = new Texture("data/DarkDirt.jpg");
 		tree = new Texture(("data/BigTree1.png"));
 		stone = new Texture(("data/download.jpg"));
@@ -77,6 +79,10 @@ public class MyGdxGame extends Game {
 		dirtspace.y = 20;
 		dirtspace.width = 32;
 		dirtspace.height = 32;
+	}
+	public static void changetype(int change)
+	{
+		blocktype = change;
 	}
 
 	@Override
@@ -118,7 +124,7 @@ public class MyGdxGame extends Game {
 
 		}
 		if(Gdx.input.isKeyPressed(Keys.ENTER)){
-		editMap(mainpc.getX(),mainpc.getY(), 0);
+		editMap(mainpc.getX(),mainpc.getY(), blocktype);
 		}
 		if(Gdx.input.isKeyPressed(Keys.BACKSPACE)){
 			changeblock.modify(mainpc.getX(),mainpc.getY());

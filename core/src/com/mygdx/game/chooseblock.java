@@ -1,5 +1,7 @@
 package com.mygdx.game;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,13 +26,26 @@ public class chooseblock implements Screen {
         fill = new Texture("data/fill.jpg");
         fill2 = new Texture("data/filler.jpg");
         load = new SpriteBatch();
+        render(0);
     }
 
     @Override
     public void render(float delta) {
     load.begin();
-    load.draw(fill,10,10);
-    load.draw(fill2,500,500);
+
+    load.draw(fill,0,0);
+        if(Gdx.input.isKeyPressed(Input.Keys.NUM_0)){
+        MyGdxGame.changetype(0);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.NUM_1)){
+            MyGdxGame.changetype(1);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.NUM_2)){
+            MyGdxGame.changetype(2);
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.NUM_2)){
+            MyGdxGame.changetype(3);
+        }
     load.end();
     }
 
