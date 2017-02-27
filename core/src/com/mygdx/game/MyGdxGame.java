@@ -22,11 +22,14 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import mainmenue.main;
+
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 import static com.badlogic.gdx.math.Interpolation.*;
 
 
 public class MyGdxGame extends Game {
+
 	private Texture dirt;
 	private Texture tree;
 	private Texture stone;
@@ -49,7 +52,7 @@ public class MyGdxGame extends Game {
 
 	@Override
 	public void create () { //initialising all variables
-
+		setScreen(new main());
         map = new TmxMapLoader().load("data/map1.tmx");
         newmap = map;
         blocktype = 0;

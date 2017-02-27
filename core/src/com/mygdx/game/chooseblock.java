@@ -23,7 +23,7 @@ public class chooseblock implements Screen {
 
     @Override
     public void show() {
-        fill = new Texture("data/fill.jpg");
+        fill = new Texture("data/Selection.png");
         fill2 = new Texture("data/filler.jpg");
         load = new SpriteBatch();
         render(0);
