@@ -15,7 +15,7 @@ import static com.mygdx.game.MyGdxGame.map;
 
 public class collisiondet {
 
-    private static int objectlayer = 0;
+
     private static TiledMapTileLayer collision = (TiledMapTileLayer) map.getLayers().get("layer1");
     private static TiledMapTileLayer.Cell myCell;
 

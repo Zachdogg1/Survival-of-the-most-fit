@@ -1,31 +1,20 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import mainmenue.main;
-
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
-import static com.badlogic.gdx.math.Interpolation.*;
 
 
 public class MyGdxGame extends Game {
@@ -52,7 +41,7 @@ public class MyGdxGame extends Game {
 
 	@Override
 	public void create () { //initialising all variables
-		setScreen(new main());
+
         map = new TmxMapLoader().load("data/map1.tmx");
         newmap = map;
         blocktype = 0;
@@ -126,11 +115,11 @@ public class MyGdxGame extends Game {
 			setScreen(new chooseblock(game));
 
 		}
-		if(Gdx.input.isKeyPressed(Keys.ENTER)){
-		editMap(mainpc.getX(),mainpc.getY(), blocktype);
+		if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
+		editing.editMap(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth()/2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight()/2), blocktype);
 		}
 		if(Gdx.input.isKeyPressed(Keys.BACKSPACE)){
-			changeblock.modify(mainpc.getX(),mainpc.getY());
+			changeblock.modify(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth()/2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight()/2));
 		}
 		batch.setProjectionMatrix(camera.combined);
 		mainpc.draw(tiledMapRenderer.getBatch());
@@ -139,16 +128,7 @@ public class MyGdxGame extends Game {
 		tiledMapRenderer.getBatch().end();
 	}
 
-	public void editMap(float posx, float posy, int blocktype){
 
-		int x = Math.round(posx/32);
-		int y = Math.round(posy/32);
-		TiledMapTileLayer.Cell cell = ((TiledMapTileLayer) map.getLayers().get(0)).getCell(blocktype,0);
-		//((TiledMapTileLayer) newmap.getLayers().get("Tile Layer 2")).getCell(x,y).setTile((newmap.getTileSets().getTileSet(tilesetname)).getTile(blocktype));
-		((TiledMapTileLayer) newmap.getLayers().get("Tile Layer 2")).setCell(x,y,cell);
-
-
-	}
 	@Override
 	public void dispose () {
 		batch.dispose();
