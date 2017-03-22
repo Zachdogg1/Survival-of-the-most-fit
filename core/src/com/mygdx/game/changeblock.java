@@ -17,6 +17,8 @@ public class changeblock{
 
         int x = Math.round(posx/32);
         int y = Math.round(posy/32);
-        ((TiledMapTileLayer) MyGdxGame.newmap.getLayers().get("Tile Layer 2")).setCell(x,y,null);
+        if (x > 0 && y > 0 && x < 200 && y < 113) {
+            ((TiledMapTileLayer) MyGdxGame.newmap.getLayers().get("Tile Layer 2")).setCell(x, y, null);
+        }
     }
 }
