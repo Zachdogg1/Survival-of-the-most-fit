@@ -75,6 +75,7 @@ public class MyGdxGame extends Game {
 	public static void changetype(int change)
 	{
 		blocktype = change;
+
 	}
 
 	@Override

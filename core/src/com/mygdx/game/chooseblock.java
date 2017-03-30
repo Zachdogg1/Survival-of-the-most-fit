@@ -3,12 +3,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import 
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
-import static com.badlogic.gdx.math.Interpolation.*;
 
 /**
  * Created by 256233 on 2/21/2017.
@@ -18,41 +20,34 @@ public class chooseblock implements Screen {
     private Texture fill;
     private Texture fill2;
     private SpriteBatch load;
+    private Stage stage;
+    private background background;
     public chooseblock(Game game) {
         this.game = game;
     }
 
     @Override
     public void show() {
-        fill = new Texture("data/Selection.png");
-        fill2 = new Texture("data/filler.jpg");
-        load = new SpriteBatch();
+
         render(0);
+    }
+
+
+    public void create(){
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
     public void render(float delta) {
-    load.begin();
-
-    load.draw(fill,0,0);
-        if(Gdx.input.isKeyPressed(Input.Keys.NUM_0)){
-        MyGdxGame.changetype(0);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.NUM_1)){
-            MyGdxGame.changetype(1);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.NUM_2)){
-            MyGdxGame.changetype(2);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.NUM_2)){
-            MyGdxGame.changetype(3);
-        }
-    load.end();
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act(delta);
+        stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-
+        stage.getViewport().update(1920, 1080, true);
     }
 
     @Override
@@ -72,6 +67,6 @@ public class chooseblock implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }
