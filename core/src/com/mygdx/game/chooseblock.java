@@ -1,4 +1,7 @@
 package com.mygdx.game;
+import buttons.Background;
+import buttons.Button1;
+import buttons.Button2;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -9,7 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import 
+
 
 
 /**
@@ -21,21 +24,30 @@ public class chooseblock implements Screen {
     private Texture fill2;
     private SpriteBatch load;
     private Stage stage;
-    private background background;
+    public Background background;
+    public Button1 button1;
+    public Button2 button2;
+
     public chooseblock(Game game) {
         this.game = game;
     }
 
     @Override
     public void show() {
-
+        stage = new Stage(new ScreenViewport());
+        Gdx.input.setInputProcessor(stage);
+        background = new Background();
+        button1 = new Button1();
+        button2 = new Button2();
+        stage.addActor(background);
+        stage.addActor(button1);
+        stage.addActor(button2);
         render(0);
     }
 
 
     public void create(){
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
+
     }
 
     @Override
