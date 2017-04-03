@@ -19,6 +19,11 @@
  </tileset>
  <tileset firstgid="606" name="images" tilewidth="32" tileheight="32" tilecount="36" columns="6">
   <image source="images.jpg" trans="ff00ff" width="204" height="204"/>
+  <tile id="15">
+   <properties>
+    <property name="dont" value="dont"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="642" name="TreesYing_zpsf4986562" tilewidth="32" tileheight="32" tilecount="128" columns="16">
   <image source="TreesYing_zpsf4986562.png" trans="ff00ff" width="512" height="256"/>
@@ -28,18 +33,58 @@
  </tileset>
  <tileset firstgid="771" name="walls" tilewidth="32" tileheight="32" tilecount="48" columns="8">
   <image source="walls.jpg" trans="ff00ff" width="259" height="194"/>
+  <tile id="2">
+   <properties>
+    <property name="coll" value="coll"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="coll" value="coll"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="coll" value="coll"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="coll" value="coll"/>
+   </properties>
+  </tile>
+  <tile id="42">
+   <properties>
+    <property name="coll" value="coll"/>
+   </properties>
+  </tile>
+  <tile id="46">
+   <properties>
+    <property name="coll" value="coll"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="819" name="ejemplo_tileset_bosque_by_mataraelfay-d5dn3km" tilewidth="32" tileheight="32" tilecount="784" columns="28">
   <image source="tilesets/ejemplo_tileset_bosque_by_mataraelfay-d5dn3km.jpg" trans="ff00ff" width="900" height="900"/>
  </tileset>
  <tileset firstgid="1603" name="Hanzo-TownSet03VS" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="tilesets/Hanzo-TownSet03VS.png" trans="ff00ff" width="512" height="512"/>
+  <tile id="4">
+   <properties>
+    <property name="coll" value="coll"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="1859" name="school_tileb" tilewidth="32" tileheight="32" tilecount="576" columns="24">
   <image source="tilesets/school_tileb.png" trans="ff00ff" width="768" height="768"/>
  </tileset>
  <tileset firstgid="2435" name="tileb" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="tilesets/tileb.png" trans="ff00ff" width="512" height="512"/>
+  <tile id="9">
+   <properties>
+    <property name="coll" value="coll"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="2691" name="5z1KX" tilewidth="32" tileheight="32" tilecount="483" columns="23">
   <image source="tilesets/5z1KX.png" trans="ff00ff" width="736" height="672"/>
@@ -278,7 +323,7 @@
 23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23
 </data>
  </layer>
- <layer name="Tile Layer 1" width="200" height="113">
+ <layer name="river" width="200" height="113">
   <data encoding="csv">
 193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,412,621,621,621,621,396,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,
 193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,412,621,621,621,621,396,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,193,

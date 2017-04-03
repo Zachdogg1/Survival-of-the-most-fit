@@ -1,7 +1,5 @@
 package com.mygdx.game;
-import buttons.Background;
-import buttons.Button1;
-import buttons.Button2;
+import buttons.*;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -27,6 +25,19 @@ public class chooseblock implements Screen {
     public Background background;
     public Button1 button1;
     public Button2 button2;
+    public Button3 button3;
+    public Button4 button4;
+    public Button5 button5;
+    public Button6 button6;
+    public Button7 button7;
+    public Button8 button8;
+    public Button9 button9;
+    public Button10 button10;
+    public Button11 button11;
+    public Button12 button12;
+    public Button13 button13;
+    public Button14 button14;
+    public Button15 button15;
 
     public chooseblock(Game game) {
         this.game = game;
@@ -39,9 +50,35 @@ public class chooseblock implements Screen {
         background = new Background();
         button1 = new Button1();
         button2 = new Button2();
+        button3 = new Button3();
+        button4 = new Button4();
+        button5 = new Button5();
+        button6 = new Button6();
+        button7 = new Button7();
+        button8 = new Button8();
+        button9 = new Button9();
+        button10 = new Button10();
+        button11 = new Button11();
+        button12 = new Button12();
+        button13 = new Button13();
+        button14 = new Button14();
+        button15 = new Button15();
         stage.addActor(background);
         stage.addActor(button1);
         stage.addActor(button2);
+        stage.addActor(button3);
+        stage.addActor(button4);
+        stage.addActor(button5);
+        stage.addActor(button6);
+        stage.addActor(button7);
+        stage.addActor(button8);
+        stage.addActor(button9);
+        stage.addActor(button10);
+        stage.addActor(button11);
+        stage.addActor(button12);
+        stage.addActor(button13);
+        stage.addActor(button14);
+        stage.addActor(button15);
         render(0);
     }
 

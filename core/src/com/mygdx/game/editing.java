@@ -9,7 +9,9 @@ import static com.mygdx.game.MyGdxGame.map;
  */
 public class editing {
     private static TiledMapTileLayer collision = (TiledMapTileLayer) map.getLayers().get("layer1");
+    private static TiledMapTileLayer object = (TiledMapTileLayer) map.getLayers().get("object");
     private static TiledMapTileLayer.Cell myCell;
+    private static TiledMapTileLayer.Cell blockcell;
 
     public static void editMap(float posx, float posy, int blocktype) {
 
@@ -24,6 +26,13 @@ public class editing {
             if (test != null) {
                 TiledMapTileLayer.Cell cell2 = ((TiledMapTileLayer) MyGdxGame.map.getLayers().get(0)).getCell(1, 1);
                 ((TiledMapTileLayer) MyGdxGame.newmap.getLayers().get("layer1")).setCell(x, y, cell2);
+            }
+            blockcell = object.getCell(blocktype,0);
+            Object coll = blockcell.getTile().getProperties().get("coll");
+            if (coll != null){
+                TiledMapTileLayer.Cell cell3 = ((TiledMapTileLayer) MyGdxGame.map.getLayers().get(0)).getCell(0, 1);
+                ((TiledMapTileLayer) MyGdxGame.newmap.getLayers().get("layer1")).setCell(x, y, cell3);
+
             }
 
         }
