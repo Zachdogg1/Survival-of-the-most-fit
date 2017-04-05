@@ -1,37 +1,50 @@
 package inventory;
-
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 /**
- * Created by 256233 on 4/3/2017.
+ * Created by 256233 on 4/5/2017.
  */
-public class SlotActor extends ImageButton implements SlotListener {
+public class SlotActor extends Actor implements SlotListener {
     private Slot slot;
+
     private Skin skin;
+
     public SlotActor(Skin skin, Slot slot) {
-        super(createStyle(skin, slot));
+        createStyle(skin, slot);
         this.slot = slot;
         this.skin = skin;
+
+        // this actor has to be notified when the slot itself changes
         slot.addListener(this);
+
+        // ignore this for now, it will be explained in part IV
         SlotTooltip tooltip = new SlotTooltip(slot, skin);
         InventoryScreen.stage.addActor(tooltip);
-        addListener(new TooltipListener(tooltip, true));
+        addListener(new ToolTipListner(tooltip, true));
     }
-    private static ImageButtonStyle createStyle(Skin skin, Slot slot) {
-        TextureAtlas icons = LibgdxUtils.assets.get("icons/icons.atlas", TextureAtlas.class);
+
+
+    private static ImageButton.ImageButtonStyle createStyle(Skin skin, Slot slot) {
+        TextureAtlas icons = new TextureAtlas("data/filler.jpg");
         TextureRegion image;
         if (slot.getItem() != null) {
             image = icons.findRegion(slot.getItem().getTextureRegion());
-        }else {
+        } else {
             // we have a special "empty" region in our atlas file, which is just black
             image = icons.findRegion("nothing");
         }
-        ImageButtonStyle style = new ImageButtonStyle(skin.get(ButtonStyle.class));
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle(skin.get(Button.ButtonStyle.class));
         style.imageUp = new TextureRegionDrawable(image);
         style.imageDown = new TextureRegionDrawable(image);
 
@@ -40,9 +53,14 @@ public class SlotActor extends ImageButton implements SlotListener {
 
     @Override
     public void hasChanged(Slot slot) {
-        setStyle(createStyle(skin, slot));
+        // when the slot changes, we switch the icon via a new style
+
     }
+
     public Slot getSlot() {
         return slot;
     }
+
+
 }
+

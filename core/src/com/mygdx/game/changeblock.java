@@ -33,5 +33,9 @@ public class changeblock{
             TiledMapTileLayer.Cell cell2 = ((TiledMapTileLayer) MyGdxGame.map.getLayers().get(0)).getCell(0, 1);
             ((TiledMapTileLayer) MyGdxGame.newmap.getLayers().get("layer1")).setCell(x, y, cell2);
         }
+        else{
+            TiledMapTileLayer.Cell cell2 = ((TiledMapTileLayer) MyGdxGame.map.getLayers().get(0)).getCell(1, 1);
+            ((TiledMapTileLayer) MyGdxGame.newmap.getLayers().get("layer1")).setCell(x, y, cell2);
+        }
     }
 }

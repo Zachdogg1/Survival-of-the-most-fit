@@ -16,7 +16,7 @@ public class Slot {
         this.item = item;
         this.amount = amount;
     }
-    public Boolean empty(){
+    public Boolean isEmpty(){
         return item == null || amount <=0;
     }
     public boolean add(Item item, int number)
@@ -27,6 +27,18 @@ public class Slot {
             notifyListeners();
             return true;
         }
+        return false;
+    }
+    public boolean take(int amount) {
+        if (this.amount >= amount) {
+            this.amount -= amount;
+            if (this.amount == 0) {
+                item = null;
+            }
+            notifyListeners();
+            return true;
+        }
+
         return false;
     }
     public void addListener(SlotListener slotListener) {

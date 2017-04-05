@@ -10,5 +10,15 @@ public class Item {
         this.blocknumber = blocknumber;
     }
 
+    private String textureRegion;
+
+    private Item(String textureRegion) {
+        this.textureRegion = textureRegion;
+    }
+
+    public String getTextureRegion() {
+        return textureRegion;
+    }
+
 }
 
