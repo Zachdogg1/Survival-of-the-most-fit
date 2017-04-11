@@ -25,7 +25,7 @@ public class Healthbar {
         {
             food--;
         }
-        if ( water < 0 || food < 0)
+        if ( water <= 0 || food <= 0)
         {
             health --;
             if(water < 0) water = 0;
