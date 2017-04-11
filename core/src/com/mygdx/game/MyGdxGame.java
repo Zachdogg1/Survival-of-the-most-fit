@@ -16,10 +16,11 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import inventory.InventoryScreen;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 
 public class MyGdxGame extends Game {
-
+	private ShapeRenderer shape;
 	private Texture dirt;
 	private Texture tree;
 	private Texture stone;
@@ -51,6 +52,8 @@ public class MyGdxGame extends Game {
 		stone = new Texture(("data/download.jpg"));
 		charnum = randomgeneration.characters();
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(newmap);
+		Healthbar.reset();
+		shape = new ShapeRenderer();
 
 		if (0 == charnum) {
             character = new Texture("data/char1.png");
@@ -89,10 +92,12 @@ public class MyGdxGame extends Game {
 		camera.update();
 		tiledMapRenderer.setView(camera);
 		tiledMapRenderer.render();
-
+		Healthbar.runeachtime();
 		camera.position.set(mainpc.getX() + mainpc.getWidth()/2, mainpc.getY() + mainpc.getHeight()/2, 20);
 
 		tiledMapRenderer.getBatch().begin();
+
+
 		//movement
 		if(Gdx.input.isKeyPressed(Keys.A)){
 				if(mainpc.getX() > 0 && collisiondet.willcollide(mainpc.getX()-2, mainpc.getY()) == false)
@@ -127,8 +132,19 @@ public class MyGdxGame extends Game {
 		batch.setProjectionMatrix(camera.combined);
 		mainpc.draw(tiledMapRenderer.getBatch());
 
-
+		if(Healthbar.checkhealth() == true)
+		{
+			Gdx.app.exit();
+		}
 		tiledMapRenderer.getBatch().end();
+		shape.begin(ShapeRenderer.ShapeType.Filled);
+		shape.setColor(1, 0, 0, 1);
+		shape.rect(40, 1000, Healthbar.getHealth(), 10);
+		shape.setColor(0, 1, 0, 1);
+		shape.rect(150, 1000, Healthbar.getFood()/2, 10);
+		shape.setColor(0, 0, 1, 1);
+		shape.rect(260, 1000, Healthbar.getWater()/2, 10);
+		shape.end();
 	}
 
 
