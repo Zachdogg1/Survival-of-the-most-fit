@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by 256233 on 4/5/2017.
@@ -36,7 +37,7 @@ public class SlotActor extends Actor implements SlotListener {
 
 
     private static ImageButton.ImageButtonStyle createStyle(Skin skin, Slot slot) {
-        TextureAtlas icons = new TextureAtlas("data/filler.jpg");
+        TextureAtlas icons = new TextureAtlas("data/icons.atlas");
         TextureRegion image;
         if (slot.getItem() != null) {
             image = icons.findRegion(slot.getItem().getTextureRegion());

@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import inventory.InventoryScreen;
 
 
 public class MyGdxGame extends Game {
@@ -122,6 +123,7 @@ public class MyGdxGame extends Game {
 		if(Gdx.input.isKeyPressed(Keys.BACKSPACE)){
 			changeblock.modify(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth()/2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight()/2));
 		}
+
 		batch.setProjectionMatrix(camera.combined);
 		mainpc.draw(tiledMapRenderer.getBatch());
 
