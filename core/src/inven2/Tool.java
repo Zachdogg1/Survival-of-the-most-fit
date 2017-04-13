@@ -7,30 +7,52 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  * Created by 256233 on 4/11/2017.
  */
 public class Tool {
-    static int foodrestored;
-    static int waterrestored;
-    static  int healthrestored;
-    static  Texture texture;
+    public void setFoodrestored(int foodrestored) {
+        this.foodrestored = foodrestored;
+    }
+
+    public void setWaterrestored(int waterrestored) {
+        this.waterrestored = waterrestored;
+    }
+
+    int foodrestored;
+     int waterrestored;
+
+    public void setHealthrestored(int healthrestored) {
+        this.healthrestored = healthrestored;
+    }
+
+    int healthrestored;
+
+
+    public  void setImage(Sprite image) {
+        Tool.image = image;
+    }
+
     static Sprite image;
 
-    static int damage;
-    public static int getFoodrestored()
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    int damage;
+    public  int getFoodrestored()
     {
         return foodrestored;
     }
-    public static int getWaterrestored()
+    public  int getWaterrestored()
     {
         return waterrestored;
     }
-    public static int getHealthrestored()
+    public  int getHealthrestored()
     {
         return healthrestored;
     }
-    public static int getDamage()
+    public  int getDamage()
     {
         return damage;
     }
-    public static Sprite getImage()
+    public  Sprite getImage()
     {
         return image;
     }

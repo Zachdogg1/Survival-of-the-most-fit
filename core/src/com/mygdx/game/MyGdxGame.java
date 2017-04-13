@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import inven2.BasicInven;
 import inventory.InventoryScreen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -26,14 +27,20 @@ public class MyGdxGame extends Game {
 	private Texture stone;
 	private int charnum;
 	private Music russiasong;
-	private SpriteBatch batch;
-	private OrthographicCamera camera;
+	public  SpriteBatch batch;
+
+	public static OrthographicCamera getCamera() {
+		return camera;
+	}
+
+	private static OrthographicCamera camera;
 	private Rectangle dirtspace;
     public static TiledMap map, newmap;
     public OrthogonalTiledMapRenderer tiledMapRenderer;
     public Texture character;
     private Sprite mainpc;
 	private Game game;
+	public BasicInven b;
 	public static int blocktype;
 
 	public MyGdxGame() {
@@ -43,7 +50,8 @@ public class MyGdxGame extends Game {
 
 	@Override
 	public void create () { //initialising all variables
-
+		b = new BasicInven();
+		b.start();
         map = new TmxMapLoader().load("data/map1.tmx");
         newmap = map;
         blocktype = 0;
@@ -128,6 +136,10 @@ public class MyGdxGame extends Game {
 		if(Gdx.input.isKeyPressed(Keys.BACKSPACE)){
 			changeblock.modify(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth()/2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight()/2));
 		}
+		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT))
+		{
+			b.draw(tiledMapRenderer.getBatch());
+		}
 
 		batch.setProjectionMatrix(camera.combined);
 		mainpc.draw(tiledMapRenderer.getBatch());
@@ -136,6 +148,7 @@ public class MyGdxGame extends Game {
 		{
 			Gdx.app.exit();
 		}
+
 		tiledMapRenderer.getBatch().end();
 		shape.begin(ShapeRenderer.ShapeType.Filled);
 		shape.setColor(1, 0, 0, 1);
