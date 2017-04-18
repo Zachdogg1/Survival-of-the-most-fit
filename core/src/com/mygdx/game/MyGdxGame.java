@@ -20,6 +20,7 @@ import inventory.InventoryScreen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 
+
 public class MyGdxGame extends Game {
 	private ShapeRenderer shape;
 	private Texture dirt;
@@ -139,6 +140,27 @@ public class MyGdxGame extends Game {
 		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT))
 		{
 			b.draw(tiledMapRenderer.getBatch());
+			if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+			    int ClickX = (int) ((Gdx.graphics.getWidth() - mainpc.getWidth())/2); //  This gives us the actual physical position of MAIN PC
+                int CameraX = (int) mainpc.getX(); // Gives us the Camera postion
+                int OffsetX = ClickX - CameraX;
+                int ClickY = (int) ((Gdx.graphics.getHeight() - mainpc.getHeight())/2); //  This gives us the actual physical position of MAIN PC
+                int CameraY = (int) mainpc.getY(); // Gives us the Camera postion
+                int OffsetY = Math.abs(ClickY - CameraY);
+
+
+                for(int i = 0; i < 36; i++)
+				{
+                    System.out.println(" I : " + i + " :: "+ Gdx.input.getX() + " :OFFSET : " + OffsetX + " : hold : " + b.hold[i] + " :: " + (1080-Gdx.input.getY()) + " :OFFSET : " + OffsetY + " : hold : " + b.hold2[i]);
+					if(((Gdx.input.getX() + OffsetX + 100 >= b.hold[i] && Gdx.input.getX() + OffsetX + 100 <= (b.hold[i]+100)) && ((1080-Gdx.input.getY()) + OffsetY >= b.hold2[i] && (1080-Gdx.input.getY()) + OffsetY <= (b.hold2[i] + 100))))
+					{
+			            System.out.println(Gdx.input.getX()  + " : " + Gdx.input.getY());
+						b.reset();
+						b.spots[i] = b.sel;
+						break;
+					}
+				}
+			}
 		}
 
 		batch.setProjectionMatrix(camera.combined);

@@ -10,13 +10,17 @@ import com.mygdx.game.MyGdxGame;
  * Created by 256233 on 4/11/2017.
  */
 public class BasicInven {
-
+    public int[] hold = new int[36];
+    public int[] hold2 = new int[36];
     public Sprite[] spots = new Sprite[36];
     public Tool[] tools = new Tool[36];
+    public Texture normal = new Texture("data/box.png");
+    public Texture select = new Texture("data/selected.png");
+    public Sprite sel = new Sprite(select);
+    public Sprite nor = new Sprite(normal);
 public void start()
 {
-    Texture normal = new Texture("data/box.png");
-    Texture select = new Texture("data/selected.png");
+
 
     spots[0] = new Sprite(select);
     for(int i = 1; i < 36; i++)
@@ -24,19 +28,42 @@ public void start()
         spots[i] = new Sprite(normal);
     }
 }
-
+public void reset(){
+    for(int i = 0; i < 36; i++)
+    {
+        spots[i] = nor;
+    }
+}
 public void draw(Batch batch)
 {
     for(int i = 0; i < 9; i++)
     {
 
         spots[i].setPosition(MyGdxGame.getCamera().position.x + 40 +   100*i,MyGdxGame.getCamera().position.y + 400);
+        hold[i] = Math.round(MyGdxGame.getCamera().position.x + 40 +   100*i);
+        hold2[i] = Math.round(MyGdxGame.getCamera().position.y + 400);
         spots[i].draw(batch);
+        spots[i+9].setPosition(MyGdxGame.getCamera().position.x + 40 + 100 * i, MyGdxGame.getCamera().position.y + 300);
+        hold[i+9] = Math.round(MyGdxGame.getCamera().position.x + 40 + 100 * i);
+        hold2[i+9] = Math.round(MyGdxGame.getCamera().position.y + 300);
+        spots[i+9].draw(batch);
+        spots[i+18].setPosition(MyGdxGame.getCamera().position.x + 40 + 100 * i, MyGdxGame.getCamera().position.y +200);
+        hold[i+18] = Math.round(MyGdxGame.getCamera().position.x + 40 + 100 * i);
+        hold2[i+18] = Math.round(MyGdxGame.getCamera().position.y + 200);
+        spots[i+18].draw(batch);
+        spots[i+27].setPosition(MyGdxGame.getCamera().position.x + 40 + 100 * i, MyGdxGame.getCamera().position.y +100);
+        hold[i+27] = Math.round(MyGdxGame.getCamera().position.x + 40 + 100 * i);
+        hold2[i+27] = Math.round(MyGdxGame.getCamera().position.y + 100);
+        spots[i+27].draw(batch);
+
     }
+    /*
     for(int i = 9; i < 18; i++)
     {
         for(int k = 0; k < 9; k++) {
             spots[i].setPosition(MyGdxGame.getCamera().position.x + 40 + 100 * k, MyGdxGame.getCamera().position.y + 300);
+            hold[i] = Math.round(MyGdxGame.getCamera().position.x + 40 + 100 * k);
+            hold2[i] = Math.round(MyGdxGame.getCamera().position.y + 300);
             spots[i].draw(batch);
         }
 
@@ -45,7 +72,8 @@ public void draw(Batch batch)
     {
         for(int k = 0; k < 9; k++) {
             spots[i].setPosition(MyGdxGame.getCamera().position.x + 40 + 100 * k, MyGdxGame.getCamera().position.y +200);
-
+            hold[i] = Math.round(MyGdxGame.getCamera().position.x + 40 + 100 * k);
+            hold2[i] = Math.round(MyGdxGame.getCamera().position.y + 200);
             spots[i].draw(batch);
         }
 
@@ -54,9 +82,13 @@ public void draw(Batch batch)
     {
         for(int k = 0; k < 9; k++) {
             spots[i].setPosition(MyGdxGame.getCamera().position.x + 40 + 100 * k, MyGdxGame.getCamera().position.y +100);
+            hold[i] = Math.round(MyGdxGame.getCamera().position.x + 40 + 100 * k);
+            hold2[i] = Math.round(MyGdxGame.getCamera().position.y + 100);
             spots[i].draw(batch);
         }
 
     }
+    */
+
 }
 }

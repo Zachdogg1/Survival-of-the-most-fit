@@ -1,12 +1,17 @@
 package inven2;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.mygdx.game.MyGdxGame;
 
 /**
  * Created by 256233 on 4/11/2017.
  */
 public class Tool {
+
     public void setFoodrestored(int foodrestored) {
         this.foodrestored = foodrestored;
     }
@@ -34,6 +39,7 @@ public class Tool {
     public void setDamage(int damage) {
         this.damage = damage;
     }
+
 
     int damage;
     public  int getFoodrestored()
