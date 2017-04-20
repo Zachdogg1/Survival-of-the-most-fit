@@ -16,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import inven2.BasicInven;
+import inven2.use;
 import inventory.InventoryScreen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -29,6 +30,7 @@ public class MyGdxGame extends Game {
 	private int charnum;
 	private Music russiasong;
 	public  SpriteBatch batch;
+	private int currentitem;
 
 	public static OrthographicCamera getCamera() {
 		return camera;
@@ -41,7 +43,12 @@ public class MyGdxGame extends Game {
     public Texture character;
     private Sprite mainpc;
 	private Game game;
-	public BasicInven b;
+
+	public static BasicInven getB() {
+		return b;
+	}
+
+	public static BasicInven b;
 	public static int blocktype;
 
 	public MyGdxGame() {
@@ -51,6 +58,7 @@ public class MyGdxGame extends Game {
 
 	@Override
 	public void create () { //initialising all variables
+		currentitem = 0;
 		b = new BasicInven();
 		b.start();
         map = new TmxMapLoader().load("data/map1.tmx");
@@ -137,13 +145,18 @@ public class MyGdxGame extends Game {
 		if(Gdx.input.isKeyPressed(Keys.BACKSPACE)){
 			changeblock.modify(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth()/2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight()/2));
 		}
+		if(Gdx.input.isKeyJustPressed(Keys.ENTER))
+		{
+			use.apply(currentitem);
+
+		}
 		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT))
 		{
 			b.draw(tiledMapRenderer.getBatch());
 			if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
 			    int ClickX = (int) ((Gdx.graphics.getWidth() - mainpc.getWidth())/2); //  This gives us the actual physical position of MAIN PC
                 int CameraX = (int) mainpc.getX(); // Gives us the Camera postion
-                int OffsetX = ClickX - CameraX;
+                int OffsetX = Math.abs(ClickX - CameraX);
                 int ClickY = (int) ((Gdx.graphics.getHeight() - mainpc.getHeight())/2); //  This gives us the actual physical position of MAIN PC
                 int CameraY = (int) mainpc.getY(); // Gives us the Camera postion
                 int OffsetY = Math.abs(ClickY - CameraY);
@@ -151,12 +164,14 @@ public class MyGdxGame extends Game {
 
                 for(int i = 0; i < 36; i++)
 				{
-                    System.out.println(" I : " + i + " :: "+ Gdx.input.getX() + " :OFFSET : " + OffsetX + " : hold : " + b.hold[i] + " :: " + (1080-Gdx.input.getY()) + " :OFFSET : " + OffsetY + " : hold : " + b.hold2[i]);
-					if(((Gdx.input.getX() + OffsetX + 100 >= b.hold[i] && Gdx.input.getX() + OffsetX + 100 <= (b.hold[i]+100)) && ((1080-Gdx.input.getY()) + OffsetY >= b.hold2[i] && (1080-Gdx.input.getY()) + OffsetY <= (b.hold2[i] + 100))))
+
+                    //System.out.println(" I : " + i + " :: "+ Gdx.input.getX() + " :OFFSET : " + OffsetX + " : hold : " + b.hold[i] + " :: " + (1080-Gdx.input.getY()) + " :OFFSET : " + OffsetY + " : hold : " + b.hold2[i]);
+					if(((Gdx.input.getX() + OffsetX >= b.hold[i] && Gdx.input.getX() + OffsetX  <= (b.hold[i]+100)) && ((1080-Gdx.input.getY()) + OffsetY >= b.hold2[i] && (1080-Gdx.input.getY()) + OffsetY <= (b.hold2[i] + 100))))
 					{
-			            System.out.println(Gdx.input.getX()  + " : " + Gdx.input.getY());
+
 						b.reset();
 						b.spots[i] = b.sel;
+						currentitem = i;
 						break;
 					}
 				}

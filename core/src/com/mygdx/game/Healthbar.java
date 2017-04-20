@@ -45,6 +45,26 @@ public class Healthbar {
         }
         return false;
     }
+    public static void restorehealth (int j)
+    {
+        health += j;
+        if(health > 100)
+            health = 100;
+
+    }
+    public static void restorefood (int k)
+    {
+        food += k;
+        if(food > 200)
+            food = 200;
+    }
+    public static void restorewater(int w)
+    {
+        water += w;
+        if(water > 200)
+            water = 200;
+
+    }
     public static int getHealth()
     {
         return health;

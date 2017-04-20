@@ -30,11 +30,11 @@ public class Tool {
     int healthrestored;
 
 
-    public  void setImage(Sprite image) {
-        Tool.image = image;
+    public  void setImage(Texture image) {
+        this.image = new Sprite(image);
     }
 
-    static Sprite image;
+    Sprite image;
 
     public void setDamage(int damage) {
         this.damage = damage;
