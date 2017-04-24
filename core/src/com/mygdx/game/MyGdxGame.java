@@ -43,11 +43,11 @@ public class MyGdxGame extends Game {
     public Texture character;
     private Sprite mainpc;
 	private Game game;
-
+    private long timeSince;
 	public static BasicInven getB() {
 		return b;
 	}
-
+    public static int itemCoolDown = 3000;
 	public static BasicInven b;
 	public static int blocktype;
 
@@ -71,7 +71,7 @@ public class MyGdxGame extends Game {
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(newmap);
 		Healthbar.reset();
 		shape = new ShapeRenderer();
-
+        timeSince = System.currentTimeMillis();
 		if (0 == charnum) {
             character = new Texture("data/char1.png");
         }
@@ -148,8 +148,15 @@ public class MyGdxGame extends Game {
 		if(Gdx.input.isKeyJustPressed(Keys.ENTER))
 		{
 			use.apply(currentitem);
-
 		}
+		if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+		{
+			if((System.currentTimeMillis()) > (timeSince + itemCoolDown)) {
+                GiveItem.gimme(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth() / 2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight() / 2));
+                timeSince = System.currentTimeMillis();
+            }
+		}
+
 		if(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT))
 		{
 			b.draw(tiledMapRenderer.getBatch());

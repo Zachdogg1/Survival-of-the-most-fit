@@ -31,6 +31,17 @@ public void start()
         spots[i] = new Sprite(normal);
     }
 }
+public int nextfree()
+{
+    for(int i = 0; i < 36; i++)
+    {
+        if(this.tools[i] == null)
+        {
+            return i;
+        }
+    }
+    return 36;
+}
 public void reset(){
     for(int i = 0; i < 36; i++)
     {
