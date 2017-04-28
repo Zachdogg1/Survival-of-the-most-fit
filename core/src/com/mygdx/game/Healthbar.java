@@ -5,7 +5,7 @@ package com.mygdx.game;
  */
 public class Healthbar {
     static int counter;
-   static int food, water, health;
+   static double food, water, health;
     public static void reset()
     {
         counter = 0;
@@ -65,16 +65,16 @@ public class Healthbar {
             water = 200;
 
     }
-    public static int getHealth()
+    public static long getHealth()
     {
-        return health;
+        return Math.round(health);
     }
-    public static int getFood()
+    public static long getFood()
     {
-        return food;
+        return Math.round(food);
     }
-    public static int getWater()
+    public static long getWater()
     {
-        return water;
+        return Math.round(water);
     }
 }

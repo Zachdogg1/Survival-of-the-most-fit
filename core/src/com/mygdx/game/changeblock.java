@@ -26,7 +26,8 @@ public class changeblock{
         river = riv.getCell(x, y);
         Object dont = river.getTile().getProperties().get("dont");
         if (x > 0 && y > 0 && x < 200 && y < 113) {
-            ((TiledMapTileLayer) MyGdxGame.newmap.getLayers().get("Tile Layer 2")).setCell(x, y, null);
+            TiledMapTileLayer.Cell cell2 = ((TiledMapTileLayer) MyGdxGame.map.getLayers().get(0)).getCell(2, 1);
+            ((TiledMapTileLayer) MyGdxGame.newmap.getLayers().get("Tile Layer 2")).setCell(x, y, cell2);
         }
         if(dont != null)
         {

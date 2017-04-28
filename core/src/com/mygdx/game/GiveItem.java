@@ -26,20 +26,39 @@ public class GiveItem {
         river = riv.getCell(x, y);
         cellomine = top.getCell(x,y);
         Object check1 = river.getTile().getProperties().get("givewater");
+        Object check3 = cellomine.getTile().getProperties().get("givewater");
         Object check2 = cellomine.getTile().getProperties().get("Givefruit");
+        Object check4 = cellomine.getTile().getProperties().get("givevege");
         if(check1 != null)
         {
-            System.out.println("water");
+
             int next = b.nextfree();
             if(next != 36)
             b.tools[next] = b.starttiems.waterbottle;
+            return;
+        }
+        if(check3 != null)
+        {
+
+            int next = b.nextfree();
+            if(next != 36)
+                b.tools[next] = b.starttiems.waterbottle;
+            return;
         }
         if(check2 != null)
         {
             int next = b.nextfree();
             if(next != 36)
-            b.tools[next] = b.starttiems.fruit;
-            System.out.println("fruit");
+                b.tools[next] = b.starttiems.fruit;
+            return;
+
+        }
+        if(check4 != null)
+        {
+            int next = b.nextfree();
+            if(next != 36)
+                b.tools[next] = b.starttiems.vegtable;
+            return;
         }
 
     }

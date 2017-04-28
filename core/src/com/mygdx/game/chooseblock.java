@@ -38,6 +38,9 @@ public class chooseblock implements Screen {
     public Button13 button13;
     public Button14 button14;
     public Button15 button15;
+    public Button16 button16;
+    public Button17 button17;
+    public Button18 button18;
 
     public chooseblock(Game game) {
         this.game = game;
@@ -63,6 +66,9 @@ public class chooseblock implements Screen {
         button13 = new Button13();
         button14 = new Button14();
         button15 = new Button15();
+        button16 = new Button16();
+        button17 = new Button17();
+        button18 = new Button18();
         stage.addActor(background);
         stage.addActor(button1);
         stage.addActor(button2);
@@ -79,6 +85,9 @@ public class chooseblock implements Screen {
         stage.addActor(button13);
         stage.addActor(button14);
         stage.addActor(button15);
+        stage.addActor(button16);
+        stage.addActor(button17);
+        stage.addActor(button18);
         render(0);
     }
 

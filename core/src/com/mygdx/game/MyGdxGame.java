@@ -120,19 +120,42 @@ public class MyGdxGame extends Game {
 				if(mainpc.getX() > 0 && collisiondet.willcollide(mainpc.getX()-2, mainpc.getY()) == false)
 				mainpc.translateX(-2f);
 		}
+		if(Gdx.input.isKeyPressed(Keys.A)&&Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)){
+			if(mainpc.getX() > 0 && collisiondet.willcollide(mainpc.getX()-2, mainpc.getY()) == false){
+				mainpc.translateX(-2f);
+			Healthbar.food -= .005;
+		}
+		}
 		if(Gdx.input.isKeyPressed(Input.Keys.D)){
 				if((mainpc.getX() + 32 < 6400)&& collisiondet.willcollide(mainpc.getX()+2, mainpc.getY()) == false)
 				mainpc.translateX(2f);
-
-
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.D)&&Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)){
+			if((mainpc.getX() + 32 < 6400)&& collisiondet.willcollide(mainpc.getX()+2, mainpc.getY()) == false){
+				mainpc.translateX(2f);
+			Healthbar.food -= .05;
+		}
 		}
 		if(Gdx.input.isKeyPressed(Keys.S)){
 				if(mainpc.getY() > 0 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()-2) == false)
 				mainpc.translateY(-2f);
+
+		}
+		if(Gdx.input.isKeyPressed(Keys.S)&&Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)){
+			if(mainpc.getY() > 0 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()-2) == false){
+				mainpc.translateY(-2f);
+			Healthbar.food -= .05;
+		}
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.W)){
 				if(mainpc.getY() + 32 < 3616 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()+2) == false)
 				mainpc.translateY(2f);
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.W)&&Gdx.input.isKeyPressed(Keys.CONTROL_LEFT)){
+			if(mainpc.getY() + 32 < 3616 && collisiondet.willcollide(mainpc.getX(), mainpc.getY()+2) == false) {
+				mainpc.translateY(2f);
+				Healthbar.food -= .05;
+			}
 		}
 		if(Gdx.input.isKeyPressed(Keys.TAB))
 		{
