@@ -9,6 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.mygdx.game.MyGdxGame;
+import inven2.Starttiems;
+
+import static com.mygdx.game.MyGdxGame.b;
 
 /**
  * Created by 256233 on 4/3/2017.
@@ -16,8 +19,9 @@ import com.mygdx.game.MyGdxGame;
 public class Button13 extends Actor{
     private Texture texture;
     private Sprite sprite;
+    private Starttiems c;
     public Button13(){
-
+        c = new Starttiems();
         texture = new Texture("data/tiles/13.png");
         sprite = new Sprite(texture);
         sprite.setPosition(1170,90);
@@ -28,6 +32,7 @@ public class Button13 extends Actor{
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (button == Input.Buttons.LEFT) {
                     MyGdxGame.changetype(12);
+                    MyGdxGame.setRequired(b.starttiems.wood);
                 }
                 return true;
             }

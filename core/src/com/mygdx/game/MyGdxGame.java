@@ -16,6 +16,8 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import inven2.BasicInven;
+import inven2.Starttiems;
+import inven2.Tool;
 import inven2.use;
 import inventory.InventoryScreen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -32,6 +34,11 @@ public class MyGdxGame extends Game {
 	public  SpriteBatch batch;
 	private int currentitem;
 
+	public static void setRequired(Tool tool) {
+		required = tool;
+	}
+
+	public static Tool required;
 	public static OrthographicCamera getCamera() {
 		return camera;
 	}
@@ -58,9 +65,11 @@ public class MyGdxGame extends Game {
 
 	@Override
 	public void create () { //initialising all variables
+
 		currentitem = 0;
 		b = new BasicInven();
 		b.start();
+		required = b.starttiems.wood;
         map = new TmxMapLoader().load("data/map1.tmx");
         newmap = map;
         blocktype = 0;
@@ -162,12 +171,25 @@ public class MyGdxGame extends Game {
 			setScreen(new chooseblock(game));
 
 		}
-		if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)){
-		editing.editMap(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth()/2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight()/2), blocktype);
-		}
-		if(Gdx.input.isKeyPressed(Keys.BACKSPACE)){
-			changeblock.modify(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth()/2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight()/2));
-		}
+
+        if(Gdx.input.isKeyPressed(Keys.BACKSPACE)){
+
+
+            changeblock.modify(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth() / 2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight() / 2));
+
+
+        }
+
+		if(Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
+            if ((System.currentTimeMillis()) > (timeSince + itemCoolDown)) {
+                if (b.checkforitem(required) != -1) {
+                    editing.editMap(mainpc.getX() + (Gdx.input.getX() - Gdx.graphics.getWidth() / 2), mainpc.getY() - (Gdx.input.getY() - Gdx.graphics.getHeight() / 2), blocktype);
+                    b.tools[b.checkforitem(required)] = null;
+                }
+                timeSince = System.currentTimeMillis();
+            }
+        }
+
 		if(Gdx.input.isKeyJustPressed(Keys.ENTER))
 		{
 			use.apply(currentitem);

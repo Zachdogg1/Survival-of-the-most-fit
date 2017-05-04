@@ -48,6 +48,17 @@ public void reset(){
         spots[i] = nor;
     }
 }
+public int checkforitem(Tool tool)
+{
+    for(int i = 0; i < 36; i++)
+    {
+        if (tools[i]==tool)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 public void draw(Batch batch)
 {
     for(int i = 0; i < 9; i++)

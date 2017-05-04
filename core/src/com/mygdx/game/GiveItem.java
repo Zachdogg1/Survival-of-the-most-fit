@@ -29,6 +29,7 @@ public class GiveItem {
         Object check3 = cellomine.getTile().getProperties().get("givewater");
         Object check2 = cellomine.getTile().getProperties().get("Givefruit");
         Object check4 = cellomine.getTile().getProperties().get("givevege");
+        Object check5 = cellomine.getTile().getProperties().get("Giveseed");
         if(check1 != null)
         {
 
@@ -58,6 +59,13 @@ public class GiveItem {
             int next = b.nextfree();
             if(next != 36)
                 b.tools[next] = b.starttiems.vegtable;
+            return;
+        }
+        if(check5 != null)
+        {
+            int next = b.nextfree();
+            if(next != 36)
+                b.tools[next] = b.starttiems.seed;
             return;
         }
 

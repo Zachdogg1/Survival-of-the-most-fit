@@ -11,12 +11,20 @@ public class Starttiems {
     public Tool knife;
     public Tool fruit;
     public Tool vegtable;
-    public Texture stek, wat, fru, veg;
+    public Tool wood;
+    public Tool seed;
+    public Texture stek, wat, fru, veg, woo, see;
     public void start(){
         stek = new Texture("data/steak.png");
         wat = new Texture("data/water.png");
         fru = new Texture("data/mang.png");
         veg = new Texture("data/vege.png");
+        woo = new Texture("data/wood.png");
+        see = new Texture("data/seed.png");
+        wood = new Tool();
+        wood.setImage(woo);
+        seed = new Tool();
+        seed.setImage(see);
         steak = new Tool();
         steak.setImage(stek);
         steak.setFoodrestored(50);

@@ -10,28 +10,27 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.mygdx.game.MyGdxGame;
 import inven2.Starttiems;
-
 import static com.mygdx.game.MyGdxGame.b;
 
 /**
- * Created by 256233 on 4/26/2017.
+ * Created by 256233 on 5/4/2017.
  */
-public class Button18 extends Actor {
+public class Button19 extends Actor {
     private Texture texture;
     private Sprite sprite;
     private Starttiems c;
-    public Button18(){
+    public Button19(){
         c = new Starttiems();
-        texture = new Texture("data/tiles/18.png");
+        texture = new Texture("data/tiles/19.png");
         sprite = new Sprite(texture);
-        sprite.setPosition(1620,90);
+        sprite.setPosition(1710,90);
         setBounds(this.sprite.getX(), this.sprite.getY(), this.sprite.getWidth(), this.sprite.getHeight());
         setTouchable(Touchable.enabled);
         addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (button == Input.Buttons.LEFT) {
-                    MyGdxGame.changetype(17);
+                    MyGdxGame.changetype(18);
                     MyGdxGame.setRequired(b.starttiems.seed);
                 }
                 return true;
