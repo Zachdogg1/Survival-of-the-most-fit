@@ -14,4 +14,10 @@ public class randomgeneration {
         return finished;
 
     }
+    public static int music()
+    {
+        Random ch = new Random();
+        int finished = ch.nextInt(4 );
+        return finished;
+    }
 }

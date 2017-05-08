@@ -22,6 +22,7 @@ import inven2.use;
 import inventory.InventoryScreen;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+import java.util.Random;
 
 
 public class MyGdxGame extends Game {
@@ -29,11 +30,12 @@ public class MyGdxGame extends Game {
 	private Texture dirt;
 	private Texture tree;
 	private Texture stone;
+	Thread t1;
 	private int charnum;
 	private Music russiasong;
 	public  SpriteBatch batch;
 	private int currentitem;
-
+	public AudioPlayer musse;
 	public static void setRequired(Tool tool) {
 		required = tool;
 	}
@@ -90,6 +92,27 @@ public class MyGdxGame extends Game {
 		if (2 == charnum) {
             character = new Texture("data/char3.png");
         }
+		charnum = randomgeneration.music();
+		charnum = randomgeneration.music();
+
+		if (0 == charnum) {
+			musse = new AudioPlayer("data/music/Far Away.mp3");
+		}
+		if (1 == charnum) {
+			musse = new AudioPlayer("data/music/Staystrong.mp3");
+
+		}
+		if (2 == charnum) {
+
+			musse = new AudioPlayer("data/music/Codered.mp3");
+		}
+		if(3 == charnum)
+		{
+
+			musse = new AudioPlayer("data/music/Rimraid.mp3");
+		}
+
+
 		mainpc = new Sprite(character);
 		mainpc.setPosition(1000,900);
 		camera = new OrthographicCamera();
@@ -101,6 +124,7 @@ public class MyGdxGame extends Game {
 		dirtspace.y = 20;
 		dirtspace.width = 32;
 		dirtspace.height = 32;
+		t1 = new Thread(musse);
 	}
 	public static void changetype(int change)
 	{
@@ -112,6 +136,27 @@ public class MyGdxGame extends Game {
 	//main running of the game
 	public void render () {
 		super.render();
+
+		if(!musse.song) {
+
+			charnum = randomgeneration.music();
+
+			if (0 == charnum) {
+				musse.setInput("data/music/Far Away.mp3");
+			}
+			if (1 == charnum) {
+				musse.setInput("data/music/Staystrong.mp3");
+			}
+			if (2 == charnum) {
+				musse.setInput( "data/music/Codered.mp3");
+			}
+			if(3 == charnum)
+			{
+				musse.setInput("data/music/Rimraid.mp3");
+			}
+			t1.start();
+		}
+
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//setting camera and rendering map
