@@ -59,16 +59,15 @@ public class AudioPlayer implements Runnable{
 
         @Override
         public void run() {
-            while(isRunning){
 
-                try{
-                    playOnce();
-                    Thread.sleep(10);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+            try {
+                playOnce();
+                player.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
         }
-    }
+        }
 
 

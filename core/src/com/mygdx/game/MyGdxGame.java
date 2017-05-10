@@ -59,7 +59,7 @@ public class MyGdxGame extends Game {
     public static int itemCoolDown = 3000;
 	public static BasicInven b;
 	public static int blocktype;
-
+    int lastsong;
 	public MyGdxGame() {
 		game = this;
 
@@ -112,7 +112,7 @@ public class MyGdxGame extends Game {
 			musse = new AudioPlayer("data/music/Rimraid.mp3");
 		}
 
-
+        lastsong = charnum;
 		mainpc = new Sprite(character);
 		mainpc.setPosition(1000,900);
 		camera = new OrthographicCamera();
@@ -125,6 +125,7 @@ public class MyGdxGame extends Game {
 		dirtspace.width = 32;
 		dirtspace.height = 32;
 		t1 = new Thread(musse);
+		t1.start();
 	}
 	public static void changetype(int change)
 	{
@@ -137,26 +138,65 @@ public class MyGdxGame extends Game {
 	public void render () {
 		super.render();
 
+
 		if(!musse.song) {
 
 			charnum = randomgeneration.music();
 
 			if (0 == charnum) {
-				musse.setInput("data/music/Far Away.mp3");
+				if(lastsong == 0)
+				{
+					lastsong = 1;
+					musse.setInput("data/music/Staystrong.mp3");
+
+				}
+				else {
+					lastsong = 0;
+					musse.setInput("data/music/Far Away.mp3");
+				}
+
+
 			}
 			if (1 == charnum) {
-				musse.setInput("data/music/Staystrong.mp3");
+				if(lastsong == 1)
+				{
+					lastsong = 2;
+					musse.setInput("data/music/Codered.mp3");
+				}
+				else {
+					lastsong = 1;
+					musse.setInput("data/music/Staystrong.mp3");
+				}
 			}
 			if (2 == charnum) {
-				musse.setInput( "data/music/Codered.mp3");
+				if(lastsong == 2)
+				{
+					lastsong = 3;
+					musse.setInput("data/music/Rimraid.mp3");
+				}
+				else {
+					lastsong = 2;
+					musse.setInput("data/music/Codered.mp3");
+				}
 			}
 			if(3 == charnum)
 			{
-				musse.setInput("data/music/Rimraid.mp3");
+				if(lastsong == 3)
+				{
+					lastsong = 0;
+					musse.setInput("data/music/Far Away.mp3");
+				}
+				else {
+					lastsong = 3;
+					musse.setInput("data/music/Rimraid.mp3");
+				}
 			}
+			System.out.println("I GOT HERE");
+			musse.song = true;
+			t1 = new Thread(musse);
 			t1.start();
-		}
 
+		}
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//setting camera and rendering map

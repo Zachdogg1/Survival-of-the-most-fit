@@ -23,13 +23,16 @@ public class changeblock{
 
         int x = Math.round(posx/32);
         int y = Math.round(posy/32);
+        if(!( x > 0 && y > 0 && x < 200 && y < 113)){
+            return;
+        }
         justonce = ontop.getCell(x,y);
         myCell = collision.getCell(x, y);
         river = riv.getCell(x, y);
         Object dont = river.getTile().getProperties().get("dont");
         Object check = justonce.getTile().getProperties().get("Givewood");
 
-        if(check != null)
+        if(check != nullaaaaaa)
         {
             int next = b.nextfree();
             if(next != 36)
