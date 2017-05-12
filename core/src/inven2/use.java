@@ -15,7 +15,7 @@ public class use {
         if(b.tools[i] != null)
         {
 
-            Healthbar.restorehealth(b.tools[i].getFoodrestored());
+            Healthbar.restorehealth(b.tools[i].getHealthrestored());
             Healthbar.restorefood(b.tools[i].getFoodrestored());
             Healthbar.restorewater(b.tools[i].getWaterrestored());
         }

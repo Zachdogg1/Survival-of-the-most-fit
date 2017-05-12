@@ -20,6 +20,8 @@ public class AudioPlayer implements Runnable{
         private static String input;
         public static boolean isRunning;
         public static boolean song;
+        private static int rando;
+        public static String currentsong;
         public AudioPlayer(String fileName){
             isRunning = true;
             song = false;
@@ -60,9 +62,27 @@ public class AudioPlayer implements Runnable{
         @Override
         public void run() {
 
-            try {
+            while (isRunning==true)try {
                 playOnce();
                 player.stop();
+                rando = randomgeneration.music();
+                if (0 == rando) {
+                    this.setInput("data/music/Far Away.mp3");
+                }
+                if (1 == rando) {
+                    this.setInput("data/music/Staystrong.mp3");
+
+                }
+                if (2 == rando) {
+
+                    this.setInput("data/music/Codered.mp3");
+                }
+                if(3 == rando)
+                {
+
+                    this.setInput("data/music/Rimraid.mp3");
+                }
+                init();
             } catch (Exception e) {
                 e.printStackTrace();
             }

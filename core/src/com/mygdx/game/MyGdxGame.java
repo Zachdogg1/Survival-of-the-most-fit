@@ -32,7 +32,7 @@ public class MyGdxGame extends Game {
 	private Texture stone;
 	Thread t1;
 	private int charnum;
-	private Music russiasong;
+
 	public  SpriteBatch batch;
 	private int currentitem;
 	public AudioPlayer musse;
@@ -92,7 +92,7 @@ public class MyGdxGame extends Game {
 		if (2 == charnum) {
             character = new Texture("data/char3.png");
         }
-		charnum = randomgeneration.music();
+
 		charnum = randomgeneration.music();
 
 		if (0 == charnum) {
@@ -139,7 +139,7 @@ public class MyGdxGame extends Game {
 		super.render();
 
 
-		if(!musse.song) {
+		/*if(!musse.song) {
 
 			charnum = randomgeneration.music();
 
@@ -192,11 +192,11 @@ public class MyGdxGame extends Game {
 				}
 			}
 			System.out.println("I GOT HERE");
-			musse.song = true;
-			t1 = new Thread(musse);
-			t1.start();
+			new Thread(musse).start();
+
 
 		}
+		*/
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//setting camera and rendering map

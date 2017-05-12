@@ -23,6 +23,7 @@ public class Starttiems {
         see = new Texture("data/seed.png");
         wood = new Tool();
         wood.setImage(woo);
+        wood.setHealthrestored(-20);
         seed = new Tool();
         seed.setImage(see);
         steak = new Tool();

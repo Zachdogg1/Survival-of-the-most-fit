@@ -32,7 +32,7 @@ public class changeblock{
         Object dont = river.getTile().getProperties().get("dont");
         Object check = justonce.getTile().getProperties().get("Givewood");
 
-        if(check != nullaaaaaa)
+        if(check != null)
         {
             int next = b.nextfree();
             if(next != 36)
