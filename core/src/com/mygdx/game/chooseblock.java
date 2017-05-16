@@ -10,7 +10,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import inven2.use;
 
+import static com.mygdx.game.MyGdxGame.b;
 
 
 /**
@@ -104,6 +106,48 @@ public class chooseblock implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.A)&&Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)){
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D)){
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D)&&Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)){
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S)){
+
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S)&&Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)){
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.W)){
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.W)&&Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)){
+
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.TAB))
+        {
+
+
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.BACKSPACE)){
+
+
+
+
+
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
+        {
+
+        }
     }
 
     @Override

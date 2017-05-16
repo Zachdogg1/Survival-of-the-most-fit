@@ -56,7 +56,7 @@ public class MyGdxGame extends Game {
 	public static BasicInven getB() {
 		return b;
 	}
-    public static int itemCoolDown = 3000;
+    public static int itemCoolDown = 1000;
 	public static BasicInven b;
 	public static int blocktype;
     int lastsong;
